@@ -18,13 +18,24 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework import routers
-from listings.views import PropertyViewSet
+from django.http import JsonResponse
 
-router = routers.DefaultRouter()
-router.register(r'properties', PropertyViewSet)
+def api_root_view(request):
+    return JsonResponse({
+        "message": "Welcome to the API root.",
+        "endpoints": {
+            "properties": "/api/properties/",
+            "profile": "/api/profile/"
+        }
+    })
 
 urlpatterns = [
+    path('', api_root_view),
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('api/', include('listings.urls')),
+    path('api/', include('users.urls')),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

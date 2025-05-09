@@ -8,6 +8,12 @@ class PropertyImageSerializer(serializers.ModelSerializer):
 
 class PropertySerializer(serializers.ModelSerializer):
     images = PropertyImageSerializer(many=True, read_only=True)
+
     class Meta:
         model = Property
-        fields = ['id', 'title', 'description', 'price', 'created_at', 'images']
+        fields = [
+            'id', 'title', 'description', 'location', 'property_type',
+            'price', 'bedrooms', 'bathrooms', 'created_at', 'images'
+        ]
+        # Alternatively, to include all fields:
+        # fields = '__all__'
