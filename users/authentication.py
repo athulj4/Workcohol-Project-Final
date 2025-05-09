@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import auth
 from django.conf import settings
 from rest_framework import authentication, exceptions
+from .models import UserProfile
 
 firebase_admin.initialize_app()
 
@@ -18,11 +19,9 @@ class FirebaseTokenAuthentication(authentication.BaseAuthentication):
             decoded = auth.verify_id_token(token)
         except Exception:
             raise exceptions.AuthenticationFailed('Invalid Firebase token')
-        uid = decoded.get('uid')
-        # get or create profile
-        from .models import UserProfile
+        uid = decoded['uid']
         user, _ = UserProfile.objects.get_or_create(
             uid=uid,
-            defaults={'email': decoded.get('email', '')}
+            defaults={'email': decoded.get('email', ''), 'display_name': decoded.get('name', '')}
         )
         return (user, None)

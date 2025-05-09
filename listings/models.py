@@ -8,6 +8,7 @@ class Property(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)
     bedrooms = models.IntegerField(default=0)
     bathrooms = models.IntegerField(default=0)
+    area = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

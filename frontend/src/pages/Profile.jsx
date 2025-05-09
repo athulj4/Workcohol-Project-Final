@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import api from '../utils/axios';
 
 function Profile() {
   const { user, refreshUser } = useAuth(); // Assume refreshUser reloads user data
@@ -39,11 +40,11 @@ function Profile() {
       data.append('photo', formData.photoFile);
     }
     try {
-      // Replace with your actual API endpoint
-      await fetch('/api/profile/update', {
-        method: 'POST',
-        body: data,
-        credentials: 'include',
+      // Use Axios instance for authenticated request
+      await api.post('/profile/update/', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
       setEditMode(false);
       refreshUser && refreshUser(); // Reload user data if available

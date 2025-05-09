@@ -8,7 +8,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -146,28 +146,23 @@ function Login() {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <div>
-                <a
-                  href="#"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path fillRule="evenodd" d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.093 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z" clipRule="evenodd" />
-                  </svg>
-                </a>
-              </div>
-
-              <div>
-                <a
-                  href="#"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-                  </svg>
-                </a>
-              </div>
+            <div className="mt-6">
+              <button
+                type="button"
+                onClick={signInWithGoogle}
+                className="w-full inline-flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                <svg className="h-5 w-5 mr-2" viewBox="0 0 48 48">
+                  <g>
+                    <path fill="#4285F4" d="M24 9.5c3.54 0 6.44 1.22 8.44 3.22l6.28-6.28C34.64 2.36 29.74 0 24 0 14.82 0 6.98 5.82 3.24 14.26l7.44 5.78C12.36 13.36 17.64 9.5 24 9.5z"/>
+                    <path fill="#34A853" d="M46.1 24.5c0-1.64-.14-3.22-.4-4.74H24v9.24h12.44c-.54 2.92-2.18 5.38-4.64 7.04l7.44 5.78C43.98 37.18 46.1 31.36 46.1 24.5z"/>
+                    <path fill="#FBBC05" d="M10.68 28.04c-.48-1.44-.76-2.98-.76-4.54s.28-3.1.76-4.54l-7.44-5.78C2.36 16.64 0 20.36 0 24.5s2.36 7.86 6.24 10.32l7.44-5.78z"/>
+                    <path fill="#EA4335" d="M24 46c6.48 0 11.92-2.14 15.88-5.82l-7.44-5.78c-2.06 1.38-4.7 2.2-8.44 2.2-6.36 0-11.64-3.86-13.32-9.54l-7.44 5.78C6.98 42.18 14.82 46 24 46z"/>
+                    <path fill="none" d="M0 0h48v48H0z"/>
+                  </g>
+                </svg>
+                Sign in with Google
+              </button>
             </div>
           </div>
         </div>

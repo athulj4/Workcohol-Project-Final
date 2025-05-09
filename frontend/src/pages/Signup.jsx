@@ -13,7 +13,7 @@ function Signup() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signup, currentUser } = useAuth();
+  const { signup, currentUser, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -178,7 +178,6 @@ function Signup() {
               </div>
             </div>
 
-
             <div>
               <button
                 type="submit"
@@ -194,6 +193,36 @@ function Signup() {
               </button>
             </div>
           </form>
+
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <button
+                type="button"
+                onClick={signInWithGoogle}
+                className="w-full inline-flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                <svg className="h-5 w-5 mr-2" viewBox="0 0 48 48">
+                  <g>
+                    <path fill="#4285F4" d="M24 9.5c3.54 0 6.44 1.22 8.44 3.22l6.28-6.28C34.64 2.36 29.74 0 24 0 14.82 0 6.98 5.82 3.24 14.26l7.44 5.78C12.36 13.36 17.64 9.5 24 9.5z"/>
+                    <path fill="#34A853" d="M46.1 24.5c0-1.64-.14-3.22-.4-4.74H24v9.24h12.44c-.54 2.92-2.18 5.38-4.64 7.04l7.44 5.78C43.98 37.18 46.1 31.36 46.1 24.5z"/>
+                    <path fill="#FBBC05" d="M10.68 28.04c-.48-1.44-.76-2.98-.76-4.54s.28-3.1.76-4.54l-7.44-5.78C2.36 16.64 0 20.36 0 24.5s2.36 7.86 6.24 10.32l7.44-5.78z"/>
+                    <path fill="#EA4335" d="M24 46c6.48 0 11.92-2.14 15.88-5.82l-7.44-5.78c-2.06 1.38-4.7 2.2-8.44 2.2-6.36 0-11.64-3.86-13.32-9.54l-7.44 5.78C6.98 42.18 14.82 46 24 46z"/>
+                    <path fill="none" d="M0 0h48v48H0z"/>
+                  </g>
+                </svg>
+                Sign up with Google
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

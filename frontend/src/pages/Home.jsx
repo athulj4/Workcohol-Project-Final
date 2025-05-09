@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Home as HomeIcon, Briefcase, Building, Shield, ArrowRight } from 'lucide-react';
-import { collection, getDocs, query, limit, orderBy } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import api from '../utils/axios';
 import PropertyCard from '../components/PropertyCard';
 
 function DropdownMenu() {
@@ -90,19 +89,14 @@ function Home() {
     const fetchFeaturedProperties = async () => {
       try {
         setLoading(true);
-        const q = query(
-          collection(db, "properties"),
-          orderBy("createdAt", "desc"),
-          limit(6)
-        );
-        
-        const querySnapshot = await getDocs(q);
-        const properties = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        
-        setFeaturedProperties(properties);
+        // Fetch the latest 6 properties from Django backend
+        const response = await api.get('/properties/', {
+          params: {
+            ordering: '-created_at',
+            limit: 6
+          }
+        });
+        setFeaturedProperties(response.data.results || response.data); // handle pagination or plain list
       } catch (error) {
         console.error("Error fetching featured properties:", error);
       } finally {
@@ -180,7 +174,7 @@ function Home() {
             <div className="flex justify-center items-center h-64">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
             </div>
-          ) : featuredProperties.length > 0 ? (
+          ) : Array.isArray(featuredProperties) && featuredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProperties.map(property => (
                 <PropertyCard key={property.id} property={property} />
