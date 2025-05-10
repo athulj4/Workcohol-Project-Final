@@ -96,3 +96,7 @@ The frontend will be available at `http://localhost:5173` (or as shown in your t
 - `media/` - Uploaded images and files
 - `users/`, `listings/` - Django apps for user and property management
 
+Current status: 
+- CLean frontend with react and tailwindcss in javascript+SWC
+- Functional firebase authetication
+- Django admin authentication with firebase (token exchange method)
