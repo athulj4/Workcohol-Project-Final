@@ -18,6 +18,7 @@ Prestige Homes is a modern real estate web application that allows users to buy 
 - 👤 User Accounts:  
   - Sign up and log in to manage your properties and wishlist.
   - Edit your profile and upload a profile picture.
+  - Sign-in with email-password or google authetication using Firebase authetication
 
 - ❤️ Wishlist:  
   - Save properties you are interested in for quick access.
@@ -28,13 +29,13 @@ Prestige Homes is a modern real estate web application that allows users to buy 
   - Interest Rate Calculator
 
 - 🏢 Home Interiors:  
-  - Explore interior design companies and services.
+  - Explore interior design companies and services links.
 
 ## Tech Stack
 
-- Frontend: React, Tailwind CSS, Vite
+- Frontend: React, Tailwind CSS 3.x, Vite, Axios
 - Backend: Django, Django REST Framework
-- Database: (Configured in Django, e.g., PostgreSQL or SQLite)
+- Database: Mysql
 - Authentication: Firebase Auth (for frontend user management)
 - APIs: RESTful endpoints for property and user management
 
